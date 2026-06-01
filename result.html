@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>測驗結果</title>
+
+<style>
+
+body{
+background:#6a0dad;
+color:white;
+font-family:"Microsoft JhengHei";
+text-align:center;
+padding-top:100px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>測驗完成！💜</h1>
+
+<h2 id="score"></h2>
+
+<h2 id="level"></h2>
+
+<script>
+
+const score =
+Number(localStorage.getItem("score"));
+
+document.getElementById("score").innerHTML =
+`答對 ${score} 題`;
+
+let level="";
+
+if(score>=18)
+level="👑 超級 ARMY";
+
+else if(score>=15)
+level="💜💜💜 資深 ARMY";
+
+else if(score>=10)
+level="💜💜 普通 ARMY";
+
+else if(score>=6)
+level="💜 新手 ARMY";
+
+else
+level="🤣 再去補物料吧";
+
+document.getElementById("level").innerHTML =
+level;
+
+</script>
+
+</body>
+</html>
