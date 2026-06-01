@@ -1,11 +1,79 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>HAHA</title>
-    <link rel="icon" href="1609222921_8875.jpg">
-  </head>
-  <body>
-    hello world!
-  </body>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTS 小測驗</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f5e6ff;
+    text-align:center;
+    padding:30px;
+}
+
+.quiz-box{
+    background:white;
+    max-width:600px;
+    margin:auto;
+    padding:20px;
+    border-radius:15px;
+}
+
+button{
+    background:purple;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-box">
+<h1>💜 BTS 小測驗 💜</h1>
+
+<h3>1. BTS 的隊長是誰？</h3>
+<label><input type="radio" name="q1" value="0"> Jin</label><br>
+<label><input type="radio" name="q1" value="1"> RM</label><br>
+<label><input type="radio" name="q1" value="0"> Jimin</label><br>
+<label><input type="radio" name="q1" value="0"> V</label>
+
+<h3>2. BTS 幾人組？</h3>
+<label><input type="radio" name="q2" value="0"> 5</label><br>
+<label><input type="radio" name="q2" value="0"> 6</label><br>
+<label><input type="radio" name="q2" value="1"> 7</label><br>
+<label><input type="radio" name="q2" value="0"> 8</label>
+
+<br><br>
+
+<button onclick="checkQuiz()">提交答案</button>
+
+<h2 id="result"></h2>
+</div>
+
+<script>
+function checkQuiz(){
+
+    let score = 0;
+
+    const q1 =
+      document.querySelector('input[name="q1"]:checked');
+
+    const q2 =
+      document.querySelector('input[name="q2"]:checked');
+
+    if(q1) score += Number(q1.value);
+    if(q2) score += Number(q2.value);
+
+    document.getElementById("result").innerHTML =
+        "🎉 你的分數：" + score + "/2";
+}
+</script>
+
+</body>
 </html>
