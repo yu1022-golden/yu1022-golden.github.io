@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTS Quiz</title>
+
+<style>
+
+body{
+    background:#6a0dad;
+    color:white;
+    font-family:"Microsoft JhengHei";
+    text-align:center;
+    padding:30px;
+}
+
+.box{
+    max-width:800px;
+    margin:auto;
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:20px;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 30px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+label{
+    display:block;
+    margin:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2 id="progress"></h2>
+
+<h3 id="question"></h3>
+
+<div id="choices"></div>
+
+<button onclick="nextQuestion()">
+下一題
+</button>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+question:"BTS的大哥是誰？",
+choices:["RM","JIN","SUGA","J-HOPE"],
+answer:"JIN"
+},
+
+{
+question:"BTS的隊長是誰？",
+choices:["RM","Jimin","JIN","V"],
+answer:"RM"
+},
+
+{
+question:"BTS的門面是誰？",
+choices:["V","JIN","JungKook","Jimin"],
+answer:"JIN"
+}
+
+];
+
+let current = 0;
+let score = 0;
+
+showQuestion();
+
+function showQuestion(){
+
+document.getElementById("progress").innerHTML =
+`第 ${current+1} 題 / ${questions.length} 題`;
+
+document.getElementById("question").innerHTML =
+questions[current].question;
+
+let html="";
+
+questions[current].choices.forEach(choice=>{
+
+html += `
+<label>
+<input type="radio"
+name="answer"
+value="${choice}">
+${choice}
+</label>
+`;
+
+});
+
+document.getElementById("choices").innerHTML = html;
+
+}
+
+function nextQuestion(){
+
+let selected =
+document.querySelector('input[name="answer"]:checked');
+
+if(!selected){
+alert("請選擇答案！");
+return;
+}
+
+if(selected.value === questions[current].answer){
+score++;
+}
+
+current++;
+
+if(current < questions.length){
+
+showQuestion();
+
+}else{
+
+localStorage.setItem("score",score);
+
+location.href="result.html";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
