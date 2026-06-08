@@ -30,19 +30,25 @@ padding-top:100px;
 const score =
 Number(localStorage.getItem("score"));
 
+const percent =
+Math.round(score / 20 * 100);
+
 document.getElementById("score").innerHTML =
-`答對 ${score} 題`;
+`
+<h2>你的分數：${score} / 20</h2>
+<h3>答對率：${percent}%</h3>
+`;
 
 let level="";
 
 if(score>=18)
-level="👑 超級 ARMY";
+level="👑 超級 ARMY 👑";
 
 else if(score>=15)
-level="💜💜💜 資深 ARMY";
+level="💜💜 資深 ARMY 💜💜";
 
 else if(score>=10)
-level="💜💜 普通 ARMY";
+level="💜 普通 ARMY 💜";
 
 else if(score>=6)
 level="💜 新手 ARMY";
