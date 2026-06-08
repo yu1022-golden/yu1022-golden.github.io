@@ -287,38 +287,31 @@ document.getElementById("choices").innerHTML = html;
 
 function nextQuestion(){
 
-let selected =
-document.querySelector('input[name="answer"]:checked');
+    let selected =
+    document.querySelector('input[name="answer"]:checked');
 
-if(!selected){
-alert("請選擇答案！");
-return;
-}
+    if(!selected){
+        alert("請選擇答案！");
+        return;
+    }
 
-if(selected.value === questions[current].answer){
-score++;
-}
+    if(selected.value === questions[current].answer){
+        score++;
+    }
 
-current++;
+    current++;
 
-if(current < questions.length){
+    if(current < questions.length){
 
-    let percent =
-    (current/questions.length)*100;
+        showQuestion();
 
-    document.getElementById("progress-bar").style.width =
-    percent + "%";
+    }else{
 
-    showQuestion();
+        localStorage.setItem("score", score);
 
-}
-}else{
+        location.href = "result.html";
 
-localStorage.setItem("score",score);
-
-location.href="result.html";
-
-}
+    }
 
 }
 
