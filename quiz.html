@@ -8,30 +8,21 @@
 
 <style>
 body{
-  background:linear-gradient(
-    135deg,
-    #B15BFF,
-    #BE77FF,
-    #CA8EFF,
-    #D3A4FF,
-    #DCB5FF,
-    #E6CAFF
-  );
-}
-    color:#4A235A;
+    background:#E6CAFF;
     font-family:"Microsoft JhengHei";
-    text-align:center;
-    padding:30px;
+    color:#6A1B9A;
+    margin:0;
+    padding:40px;
 }
 
 .box{
-    max-width:800px;
+    max-width:900px;
     margin:auto;
-    background:rgba(255,255,255,0.45);
-    padding:30px;
-    border-radius:20px;
+    background:white;
+    border-radius:30px;
+    padding:50px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
-
 button{
     margin-top:20px;
     padding:10px 30px;
@@ -82,13 +73,31 @@ label{
 .answer-side{
     width:50%;
 }
+#question{
+  text-align:center;
+  font-size:28px;
+  margin:40px 0;
+}
+#choices{
+    width:350px;
+    margin:auto;
+}
 
 label{
     display:block;
     text-align:left;
-    margin:15px 0;
-    font-size:20px;
+    padding:15px;
+    margin:12px 0;
+    border:2px solid #D3A4FF;
+    border-radius:15px;
     cursor:pointer;
+    transition:0.3s;
+}
+
+.result{
+    float:right;
+    font-weight:bold;
+    font-size:22px;
 }
 </style>
 </head>
@@ -304,13 +313,17 @@ let html="";
 questions[current].choices.forEach(choice=>{
 
 html += `
-<label>
+<label onclick="checkAnswer(this,'${choice}')">
 <input
 type="radio"
 name="answer"
 value="${choice}"
-onchange="nextQuestion()">
+hidden>
+
 ${choice}
+
+<span class="result"></span>
+
 </label>
 `;
 
@@ -320,7 +333,44 @@ document.getElementById("choices").innerHTML = html;
 
 }
 
-function nextQuestion(){
+function checkAnswer(element, choice){
+
+    const result =
+    element.querySelector(".result");
+
+    if(choice === questions[current].answer){
+
+        result.innerHTML = "✔";
+        result.style.color = "green";
+
+    }else{
+
+        result.innerHTML = "✘";
+        result.style.color = "red";
+
+    }
+
+    document
+    .querySelectorAll("#choices label")
+    .forEach(label=>{
+
+        label.style.pointerEvents="none";
+
+    });
+
+    setTimeout(()=>{
+
+        nextQuestion();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    },1000);
+
+}
+  function nextQuestion(){
 
     let selected =
     document.querySelector('input[name="answer"]:checked');
