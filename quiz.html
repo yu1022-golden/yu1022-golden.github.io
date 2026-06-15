@@ -340,6 +340,8 @@ function checkAnswer(element, choice){
 
     if(choice === questions[current].answer){
 
+        score++;
+
         result.innerHTML = "✔";
         result.style.color = "green";
 
@@ -370,19 +372,23 @@ function checkAnswer(element, choice){
     },1000);
 
 }
-  function nextQuestion(){
+function nextQuestion(){
 
-    let selected =
-    document.querySelector('input[name="answer"]:checked');
+    current++;
 
-    if(!selected){
-        alert("請選擇答案！");
-        return;
+    if(current < questions.length){
+
+        showQuestion();
+
+    }else{
+
+        localStorage.setItem("score", score);
+
+        location.href = "result.html";
+
     }
 
-    if(selected.value === questions[current].answer){
-        score++;
-    }
+}
 
     current++;
 
