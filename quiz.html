@@ -380,26 +380,10 @@ function nextQuestion(){
 
         showQuestion();
 
-    }else{
-
-        localStorage.setItem("score", score);
-
-        location.href = "result.html";
-
-    }
-
-}
-
-    current++;
-
-    if(current < questions.length){
-
-        showQuestion();
-
-window.scrollTo({
-    top:0,
-    behavior:"smooth"
-});
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
 
     }else{
 
@@ -410,7 +394,6 @@ window.scrollTo({
     }
 
 }
-
 </script>
 
 </body>
