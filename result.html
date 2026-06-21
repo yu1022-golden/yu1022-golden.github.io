@@ -17,6 +17,21 @@ text-align:center;
 padding-top:100px;
 }
 
+.retry-btn{
+    margin:15px;
+    padding:15px 35px;
+    background:white;
+    color:#6a0dad;
+    border:none;
+    border-radius:30px;
+    font-size:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.retry-btn:hover{
+    transform:scale(1.05);
+}
 </style>
 </head>
 
@@ -27,6 +42,14 @@ padding-top:100px;
 <h2 id="score"></h2>
 
 <h2 id="level"></h2>
+
+<button onclick="restartQuiz()" class="retry-btn">
+💜 再測一次 💜
+</button>
+
+<button onclick="location.href='index.html'" class="retry-btn">
+🏠 回首頁
+</button>
 
 <script>
 
@@ -62,6 +85,13 @@ level="🤣 再去補物料吧";
 document.getElementById("level").innerHTML =
 level;
 
+function restartQuiz(){
+
+    localStorage.removeItem("score");
+
+    location.href = "quiz.html";
+
+}
 </script>
 
 </body>
